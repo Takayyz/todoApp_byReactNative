@@ -7,17 +7,23 @@ import {
   Platform,
   ScrollView,
   FlatList,
-  TextInput,
-  Button,
+  // TextInput,
+  // Button,
   KeyboardAvoidingView,
   AsyncStorage,
   TouchableOpacity,
 } from 'react-native';
 
-// SearchBarをインポート
 import {
-  SearchBar
-} from 'react-native-elements'
+  // SearchBarをインポート
+  SearchBar,
+  // InputとButtonをインポート
+  Input,
+  Button,
+} from 'react-native-elements';
+
+// ButtonのアイコンをFeatherから利用
+import Icon from 'react-native-vector-icons/Feather';
 
 const STATUSBAR_HEIGHT = Platform.OS == 'ios' ? 20 : StatusBar.currentHeight;
 
@@ -142,17 +148,24 @@ export default class App extends React.Component {
           />
         </ScrollView>
         <View style={styles.input}>
-          <TextInput
+          <Input
             onChangeText={(text) => this.setState({inputText: text})}
             value={this.state.inputText}
-            style={styles.inputText}
-            placeholder="Type your todo"
+            containerStyle={styles.inputText}
+            // placeholder="Type your todo"
           />
           <Button
+            icon = {
+              <Icon
+                name = 'plus'
+                size = {38}
+                color = 'white'
+              />
+            }
             onPress={this.onAddItem}
-            title="Add"
-            color="#841584"
-            style={styles.inputButton}
+            title=""
+            // color="#841584"
+            buttonStyle={styles.inputButton}
           />
         </View>
       </KeyboardAvoidingView>
@@ -175,14 +188,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    height: 30,
+    height: 50,
     flexDirection: 'row',
+    paddingRight: 10,
   },
   inputText: {
+    paddingLeft: 10,
+    paddingRight: 10,
     flex: 1,
   },
   inputButton: {
-    width: 100,
+    width: 48,
+    height: 48,
+    borderWidth: 0,
+    borderColor: 'transparent',
+    borderRadius: 48,
+    backgroundColor: '#ff6347',
   },
   todoItem: {
     fontSize: 20,
