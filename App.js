@@ -20,26 +20,45 @@ import {
   // InputとButtonをインポート
   Input,
   Button,
+  // ListItemをインポート
+  ListItem,
 } from 'react-native-elements';
 
 // ButtonのアイコンをFeatherから利用
 import Icon from 'react-native-vector-icons/Feather';
+// Doneボタンのインポート
+import Icon2 from 'react-native-vector-icons/MaterialIcons';
 
 const STATUSBAR_HEIGHT = Platform.OS == 'ios' ? 20 : StatusBar.currentHeight;
-
 const TODO = "@todoapp.todo"
 
 const TodoItem = (props) => {
-  let textStyle = styles.TodoItem
-  if(props.done === true) {
-    textStyle = styles.todoItemDone
+  let icon = null
+  if(props.done === true){
+    icon = <Icon2 name="done" />
   }
   return (
     <TouchableOpacity onPress={props.onTapTodoItem}>
-      <Text style={textStyle}>{props.title}</Text>
+      <ListItem
+        title={props.title}
+        rightIcon={icon}
+        bottomDivider
+      />
     </TouchableOpacity>
   )
 }
+
+// const TodoItem = (props) => {
+//   let textStyle = styles.TodoItem
+//   if(props.done === true) {
+//     textStyle = styles.todoItemDone
+//   }
+//   return (
+//     <TouchableOpacity onPress={props.onTapTodoItem}>
+//       <Text style={textStyle}>{props.title}</Text>
+//     </TouchableOpacity>
+//   )
+// }
 
 export default class App extends React.Component {
 
